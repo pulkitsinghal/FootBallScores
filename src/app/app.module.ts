@@ -1,16 +1,26 @@
+import { RouterModule } from '@angular/router';
+import { CompetitionService } from './shared/competition.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
+
+import { Routing } from './app.routing';
 import { AppComponent } from './app.component';
+import { CompetitionComponent } from './competition/competition.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompetitionComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    RouterModule,
+    Routing
   ],
-  providers: [],
+  providers: [CompetitionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

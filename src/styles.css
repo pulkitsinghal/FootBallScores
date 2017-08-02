@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Bangers");
+
+.bg { 
+    /* The image used */
+    background-image: url("../src/assets/background.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: scroll;
+}
+
+body, html {
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: justify;
+  line-height: 25px;
+}
+
+p {
+  font-size: 20px;
+  color :black;
+}
+
