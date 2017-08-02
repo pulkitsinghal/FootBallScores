@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { Routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { CompetitionComponent } from './competition/competition.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
