@@ -1,0 +1,50 @@
+<br>  
+<div class="row">
+    <div class="col l6 m6 s12" [hidden]="player"><button class="waves-effect waves-light btn" (click)="playerActive()">Players List</button></div>
+    <div class="col l6 m6 s12" [hidden]="fixture"><button class="waves-effect waves-light btn" (click)="fixtureActive()">Recent Fixtures</button></div>
+  </div>
+<hr class = "myHr"/>
+
+<div class="row" [hidden]="isPlayerActive">
+  <div *ngFor="let player of players"#data>
+    <div class="col l4 m6 s12">
+      <div class ="box">       
+        <p class="bigger"><img class="avatar" [hidden] = "teamCrest" src="{{teamCrest}}">&nbsp;{{player.name}} </p>
+        <hr/>
+        <p><b>Position :</b> {{player.position}}<br/>
+        <b>Jersey Number :</b> {{player.jerseyNumber}} <br/>
+        <b>Date Of birth :</b> {{player.dateOfBirth}}<br/>
+        <b>Nationality :</b> {{player.nationality}} <br/>
+        <b>Contract Untill :</b> {{player.contractUntil}}<br/>
+        <b>Market Value :</b> {{player.marketValue}}<br/></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!players?.length && isFixtureActive">
+  <h3>No Player Data found For the Selected Team</h3>
+</div>
+
+
+<div [hidden]="isFixtureActive">
+  <div class="row">
+    <div *ngFor="let fixture of schedule; let i = index;">
+      <div *ngIf=" i >= currentMatchDay && i < currentMatchDay+5">
+        <div class="col-md-12">
+          <h3>
+            <u>{{fixture.homeTeamName}} VS {{fixture.awayTeamName}} </u>
+          </h3>
+          <div>
+            <h4><span class="label label-warning"><count-down [text]="text" units="Days | Hours | Minutes | Seconds " end="{{fixture.date}}"></count-down>days to go !</span></h4>
+            <div>
+              <h5><span class="label label-info">IST timing :- {{fixture.date|date:'medium'}}</span></h5>
+            </div>
+            <hr style="background-color:black;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

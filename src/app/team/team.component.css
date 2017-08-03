@@ -1,0 +1,37 @@
+.main{
+  border-bottom: darkgrey 1px solid;
+  padding:30px 0;
+}
+
+.myHr{
+  height:2px;
+  background-color:white; 
+}
+
+.competitions .well{
+  margin-bottom: 20px;
+  overflow: auto;
+  min-height: 300px;
+}
+
+.box{
+  width: auto;
+  height: 270px;
+  cursor: pointer;
+  background: rgba(60, 60, 60, 0.4);
+  padding-left: 20px;
+}
+
+.bigger{
+  font-size: 24px;
+  color :white;
+  padding-top: 20px;
+}
+
+.avatar{
+  width:30px;
+  height:30px;
+  margin-left:20px;
+  float:left;
+}
+

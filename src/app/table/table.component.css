@@ -1,8 +1,20 @@
 .bigger{
   font-size: 24px;
-  color: black;
+  color: white;
 }
 
+.selector{
+  cursor: pointer;
+  width: 100%
+}
+
+.avatar{
+  width:30px;
+  height:30px;
+  margin-right: 10px;
+  background: rgba(0,0,0,0);
+  border: none;
+}
 
 table {
   border-collapse: collapse;
@@ -10,9 +22,11 @@ table {
   padding: 0;
   width: 100%;
   table-layout: fixed;
+  background: rgba(60, 60, 60, 0.6);
 }
 table caption {
-  font-size: 1.5em;
+  font-size: 3em;
+  color:white;
   margin: .5em 0 .75em;
 }
 table tr {
@@ -67,6 +81,7 @@ table th {
     text-transform: uppercase;
     font-size: 20px;
     padding-top: 22px;
+    color: white;
   }
   table td:last-child {
     border-bottom: 0;

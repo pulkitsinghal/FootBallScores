@@ -6,15 +6,15 @@
 
 .bg { 
     /* The image used */
-    background-image: url("../src/assets/background.jpg");
-
+    background-image: url("../src/assets/u.jpg");
     /* Full height */
-    height: 100%; 
+    height: auto;
+    width:100%; 
 
     /* Center and scale the image nicely */
     background-repeat: no-repeat;
     background-size: cover;
-    overflow-x: scroll;
+
 }
 
 body, html {
@@ -25,10 +25,23 @@ body, html {
 }
 
 p {
-  font-size: 20px;
-  color :black;
+  font-size: 16px;
+  color :white;
 }
 
 .logo{
   width: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  .bg { 
+      /* The image used */
+      background-image: url("../src/assets/l.jpg");
+      /* Full height */
+      width:100%; 
+      background-repeat: repeat-y;
+      background-size: inherit;
+
+  }
+
 }
