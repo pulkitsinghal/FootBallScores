@@ -1,3 +1,4 @@
+import { CompetitionService } from './shared/competition.service';
 import { Router,
   Event as RouterEvent,
   NavigationStart,
@@ -19,11 +20,13 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('button') el:ElementRef;
   loading:boolean = true;
 
-  constructor(private router : Router){
+  constructor(private router : Router, private service: CompetitionService){
 
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event);
     });
+
+    this.service.incrementPageCount().then(data => this.service.changeCount(data));
 
   }
 
@@ -45,9 +48,6 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-
-
-  
 
   ngAfterViewInit() {
       $(this.el.nativeElement).sideNav();

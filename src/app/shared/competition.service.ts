@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { BehaviorSubject } from "rxjs";
+
+import {AngularFireDatabase} from "angularfire2/database/database";
 
 @Injectable()
 
@@ -10,7 +13,14 @@ export class CompetitionService{
   totalMatchDay:string;
   teamCrest:string;
 
-  constructor(private http:Http){
+  private _pageCount = new BehaviorSubject<number>(0);
+  count$ = this._pageCount.asObservable();
+
+  changeCount(number) {
+    this._pageCount.next(number);
+  }
+
+  constructor(private http:Http, private af: AngularFireDatabase){
 
   }
 
@@ -48,5 +58,13 @@ export class CompetitionService{
     this.teamCrest = link;
   }
 
+  incrementPageCount(){
+    const pageCount = this.af.object('/pageCountFA/').$ref
+      .ref.transaction(count => {
+        return count + 1;
+      }).then((data) => {return data.snapshot.node_.value_;});
+
+    return pageCount;
+  }
 
 }
