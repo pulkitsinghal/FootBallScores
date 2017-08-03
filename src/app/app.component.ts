@@ -30,11 +30,10 @@ export class AppComponent implements AfterViewInit {
    // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
-      console.log("Here");
       this.loading = true;
     }
     if (event instanceof NavigationEnd) {
-      setTimeout(() => this.loading = false,2000);
+      setTimeout(() => this.loading = false,1000);
     }
 
     // Set loading state to false in both of the below events to hide the spinner in case a request fails

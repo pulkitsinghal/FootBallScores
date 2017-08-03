@@ -10,7 +10,6 @@ export class TableResolve implements Resolve<any> {
   constructor(private competitionService:CompetitionService) {}
 
   resolve(route: ActivatedRouteSnapshot):Observable<any> {
-    console.log("Table Resolve called");
     return this.competitionService.getTeams(route.params['id']);
   }
 }

@@ -9,7 +9,7 @@
   <div *ngFor="let player of players"#data>
     <div class="col l4 m6 s12">
       <div class ="box">       
-        <p class="bigger"><img class="avatar" [hidden] = "teamCrest" src="{{teamCrest}}">&nbsp;{{player.name}} </p>
+        <p class="bigger"><img class="avatar" [hidden] = "!teamCrest" src="{{teamCrest}}">&nbsp;{{player.name}} </p>
         <hr/>
         <p><b>Position :</b> {{player.position}}<br/>
         <b>Jersey Number :</b> {{player.jerseyNumber}} <br/>
@@ -23,27 +23,18 @@
 </div>
 
 
-<div *ngIf="!players?.length && isFixtureActive">
-  <h3>No Player Data found For the Selected Team</h3>
+<div *ngIf="!players?.length && isFixtureActive">console.log(this.schedule);
+  <p class="bigger">No Player Data found For the Selected Team</p>
 </div>
 
 
-<div [hidden]="isFixtureActive">
-  <div class="row">
-    <div *ngFor="let fixture of schedule; let i = index;">
-      <div *ngIf=" i >= currentMatchDay && i < currentMatchDay+5">
-        <div class="col-md-12">
-          <h3>
-            <u>{{fixture.homeTeamName}} VS {{fixture.awayTeamName}} </u>
-          </h3>
-          <div>
-            <h4><span class="label label-warning"><count-down [text]="text" units="Days | Hours | Minutes | Seconds " end="{{fixture.date}}"></count-down>days to go !</span></h4>
-            <div>
-              <h5><span class="label label-info">IST timing :- {{fixture.date|date:'medium'}}</span></h5>
-            </div>
-            <hr style="background-color:black;" />
-          </div>
-        </div>
+<div class="row" [hidden]="isFixtureActive">
+  <div *ngFor="let fixture of schedule; let i = index;">
+    <div class="col l12 m12 s12" *ngIf="i+currentMatchDay < currentMatchDay+5">
+      <div class = "fixtureBox">
+      <p class="bigger">{{fixture.homeTeamName}} VS {{fixture.awayTeamName}}</p>
+        <p><count-down [text]="text" units="Days | Hours | Minutes | Seconds " end="{{fixture.date}}"></count-down>days to go !</p>
+          <p>IST timing :- {{fixture.date|date:'medium'}}</p>
       </div>
     </div>
   </div>

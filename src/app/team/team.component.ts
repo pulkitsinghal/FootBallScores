@@ -5,8 +5,8 @@ import {CompetitionService} from "../shared/competition.service";
 
 @Component({
   selector:'team',
-  styleUrls:['team.component.css'],
-  templateUrl:'team.component.html' //or use absoulte path with templateUrl:'app/competition/competition.component.html' require('./team.component.html')
+  styleUrls:['./team.component.css'],
+  templateUrl:'./team.component.html' //or use absoulte path with templateUrl:'app/competition/competition.component.html' require('./team.component.html')
 })
 
 export class TeamComponent implements OnInit{
@@ -33,7 +33,7 @@ export class TeamComponent implements OnInit{
     this.teamId = this.route.snapshot.params['id'];
     this.teamCrest = this.competitionService.teamCrest;
     this.players = this.route.snapshot.data['team'];
-    //this.getPlayers();
+
   }
 
   getPlayers(){
@@ -43,9 +43,8 @@ export class TeamComponent implements OnInit{
   getClosestFixtures(){
     this.totalMatchDay = +this.competitionService.totalMatchDay;
     this.currentMatchDay = +this.competitionService.currentMatchDay;
-
-    console.log("Team ID"+this.teamId);
     this.competitionService.getFixtures(this.teamId).subscribe(matches => this.schedule = matches.fixtures);
+    
   }
 
   fixtureActive(){

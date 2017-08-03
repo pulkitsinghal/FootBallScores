@@ -18,7 +18,6 @@ constructor(private competitionService:CompetitionService,private router:Router)
     }
 
     onSubmit(competition:any){
-        console.log("Id is"+competition.id);
         this.competitionService.storeMatchDay(competition.currentMatchday,competition.numberOfMatchdays);
         this.router.navigate(['table', {id: competition.id}]);
     }
