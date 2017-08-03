@@ -38,40 +38,34 @@
   </div>
 </div>
 
-<div *ngIf="visibleLeague">
   <h2>Standings</h2>
-  <div class="row">
-    <div class="col l12 m12 s12">
-      <table class="responsive-table">
+      <table *ngIf="visibleLeague">
         <thead>
         <tr>
-          <th><p class="bigger"><b>#</b></p></th>
-          <th><p class="bigger"><b>Team</b></p></th>
-          <th><p class="bigger"><b>GD</b></p></th>
-          <th><p class="bigger"><b>GA</b></p></th>
-          <th><p class="bigger"><b>GF</b></p></th>
-          <th><p class="bigger"><b>L</b></p></th>
-          <th><p class="bigger"><b>D</b></p></th>
-          <th><p class="bigger"><b>W</b></p></th>
-          <th><p class="bigger"><b>GP</b></p></th>
-          <th><p class="bigger"><b>Pts</b></p><th>
+          <th scope="col"><p class="bigger"><b>#</b></p></th>
+          <th scope="col"><p class="bigger"><b>Team</b></p></th>
+          <th scope="col"><p class="bigger"><b>GD</b></p></th>
+          <th scope="col"><p class="bigger"><b>GA</b></p></th>
+          <th scope="col"><p class="bigger"><b>GF</b></p></th>
+          <th scope="col"><p class="bigger"><b>L</b></p></th>
+          <th scope="col"><p class="bigger"><b>D</b></p></th>
+          <th scope="col"><p class="bigger"><b>W</b></p></th>
+          <th scope="col"><p class="bigger"><b>GP</b></p></th>
+          <th scope="col"><p class="bigger"><b>Pts</b></p><th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let team of (competitionTeams); let i = index;" (click)="onSubmit(team)">
-          <td scope="row"><p><b>{{team.position}}</b></p></td>
-          <td class = "selector"><img class="img-thumbnail avatar" src="{{team.crestURI}}"><p><b>{{team.teamName}}</b></p></td>
-          <td><p><b>{{team.goalDifference}}</b></p></td>
-          <td><p><b>{{team.goalsAgainst}}</b></p></td>
-          <td><p><b>{{team.goals}}</b></p></td>
-          <td><p><b>{{team.losses}}</b></p></td>
-          <td><p><b>{{team.draws}}</b></p></td>
-          <td><p><b>{{team.wins}}</b></p></td>
-          <td><p><b>{{team.playedGames}}</b></p></td>
-          <td><p><b>{{team.wins*3+team.draws}}</b></p></td>
+          <td scope="row" data-label="Team Position"><p><b>{{team.position}}</b></p></td>
+          <td class = "selector" data-label = "Team"><img class="img-thumbnail avatar" src="{{team.crestURI}}"><p><b>{{team.teamName}}</b></p></td>
+          <td scope="row" data-label="GD"><p><b>{{team.goalDifference}}</b></p></td>
+          <td scope="row" data-label="GA"><p><b>{{team.goalsAgainst}}</b></p></td>
+          <td scope="row" data-label="GF"><p><b>{{team.goals}}</b></p></td>
+          <td scope="row" data-label="L"><p><b>{{team.losses}}</b></p></td>
+          <td scope="row" data-label="D"><p><b>{{team.draws}}</b></p></td>
+          <td scope="row" data-label="W"><p><b>{{team.wins}}</b></p></td>
+          <td scope="row" data-label="GP"><p><b>{{team.playedGames}}</b></p></td>
+          <td scope="row" data-label="Pts"><p><b>{{team.wins*3+team.draws}}</b></p></td>
         </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
