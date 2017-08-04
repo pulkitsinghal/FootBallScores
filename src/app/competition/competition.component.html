@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col l4 m6 s12" *ngFor = "let competition of competitions" (click) = "onSubmit(competition)">
       <div class="box">
-          <p class="bigger"><b> {{competition.caption}}</b></p><hr>
+          <p class="bigger"><b> {{competition.caption | rename}}</b></p><hr>
           <p><b>League :</b> {{competition.league}}<br/>
           <b>Year :</b> {{competition.year}}<br/>
           <b>No of Teams :</b> {{competition.numberOfTeams}}<br/>

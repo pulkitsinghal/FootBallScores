@@ -38,6 +38,10 @@
   </div>
 </div>
 
+<div class="col l3 offset-l9">
+  <input type="search" placeholder="Search" #input>
+</div>
+
 <table *ngIf="visibleLeague">
   <caption>Standings</caption>
   <thead>
@@ -55,7 +59,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let team of (competitionTeams); let i = index;" (click)="onSubmit(team)">
+  <tr *ngFor="let team of (competitionTeams) | filterTable:input.value; let i = index;" (click)="onSubmit(team)">
     <td scope="row" data-label="Team Position"><p><b>{{team.position}}</b></p></td>
     <td class = "selector" data-label = "Team" ><img class="avatar" [hidden] = "!team.crestURI" src="{{team.crestURI}}"><p><b>{{team.teamName}}</b></p></td>
     <td scope="row" data-label="GD"><p><b>{{team.goalDifference}}</b></p></td>

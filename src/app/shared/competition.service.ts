@@ -32,7 +32,6 @@ export class CompetitionService{
 
   getTeams(id:string){
     let headers = new Headers();
-    console.log("called");
     headers.append('X-Auth-Token', '7c94f28bddf34648bd9a6f5c2e2da0f0');
     return this.http.get('https://api.football-data.org/v1/competitions/'+id+'/leagueTable',{headers:headers}).map(response => response.json())
   }

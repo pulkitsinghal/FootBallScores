@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { CompetitionService } from './../shared/competition.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -43,6 +43,10 @@ export class TableComponent implements OnInit {
     this.teamId = team._links.team.href.split('/').pop(-1);
     this.competitionService.storeTeamCrest(team.crestURI);
     this.router.navigate(['team', { id: this.teamId }]);
+  }
+
+  submit(text:string){
+    this.competitionTeams = this.competitionTeams.filter(value => value.teamName.toLowerCase().includes(text.toLowerCase()));
   }
 
 

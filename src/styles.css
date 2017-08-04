@@ -30,7 +30,8 @@ p {
 }
 
 .logo{
-  width: 60px;
+  padding-top: 5px;
+  width: 50px;
 }
 
 @media screen and (max-width: 600px) {

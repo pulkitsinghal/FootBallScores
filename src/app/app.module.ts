@@ -13,11 +13,13 @@ import { TableComponent } from './table/table.component';
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireDatabaseModule} from "angularfire2/database/database.module";
 import { firebaseConfig, firebaseConfigDev } from './shared/firebase.config';
+import { RenamePipe } from './competition/rename.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompetitionComponent
+    CompetitionComponent,
+    RenamePipe
   ],
   imports: [
     BrowserModule,

@@ -6,10 +6,11 @@ import { TableComponent } from './table.component';
 import { KeysPipe } from "../shared/KeysPipe";
 import { TableResolve } from "./table.resolve";
 import { tableRouting } from "./table.routing";
+import { FilterTablePipe } from './filter-table.pipe';
 
 @NgModule({
   declarations: [
-    TableComponent,KeysPipe
+    TableComponent,KeysPipe, FilterTablePipe
   ],
   imports:[CommonModule,tableRouting],
   providers:[TableResolve]
