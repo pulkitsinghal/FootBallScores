@@ -18,6 +18,8 @@ declare var $ : any;
 
 export class AppComponent implements AfterViewInit {
   @ViewChild('button') el:ElementRef;
+  @ViewChild('modal') modal:ElementRef;
+  @ViewChild('modal2') modal2:ElementRef;
   loading:boolean = true;
 
   constructor(private router : Router, private service: CompetitionService){
@@ -51,6 +53,9 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
       $(this.el.nativeElement).sideNav();
+      $(this.modal.nativeElement).modal();
+      $(this.modal2.nativeElement).modal();
+      
   }
 
 }

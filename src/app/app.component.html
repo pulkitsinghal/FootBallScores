@@ -3,10 +3,8 @@
       <a [routerLink] = "['/home']" class="brand-logo"><img class = "logo" src="../assets/source.gif"/><span class="score">&nbsp;Scores</span></a>
       <a  data-activates="mobile-demo" class="button-collapse" #button><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <!-- <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li> -->
+        <li><a class="modal-trigger" href="#modal1">About</a></li>
+        <li><a class="modal-trigger" href="#modal2">Comment</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <!-- <li><a href="sass.html">Sass</a></li>
@@ -28,4 +26,19 @@
       </div>
     </div>
     <router-outlet></router-outlet>
+
+  <div id="modal1" class="modal bottom-sheet" #modal>
+    <div class="modal-content">
+      <h4>Are you a Football Fan and Love watching Football? </h4>
+      <p>Tired of Searching when Next Match is of Teams from Different Leagues are Then this is for You<br>	
+      You can see the Teams Standings From Different Leagues, All the Stars who play for your team and the next 5 league matches they are going to star in :)</p>
+    </div>
   </div>
+
+  <div id="modal2" class="modal bottom-sheet" #modal2>
+    <div class="modal-content">
+      <p>For Any Suggestions and Comments Please Feel free to <a href="https://rahulrsingh09.github.io/AngularConcepts/comment">Comment</a></p>
+  </div>
+
+  </div>
+
