@@ -4,6 +4,7 @@
     cursor: pointer;
     background: rgba(60, 60, 60, 0.4);
     padding-left: 20px;
+    padding-right: 20px;
 }
 
 .bigger{
