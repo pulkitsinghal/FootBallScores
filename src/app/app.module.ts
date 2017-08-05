@@ -1,3 +1,4 @@
+import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
 import { RouterModule } from '@angular/router';
 import { CompetitionService } from './shared/competition.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,13 +14,13 @@ import { TableComponent } from './table/table.component';
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireDatabaseModule} from "angularfire2/database/database.module";
 import { firebaseConfig, firebaseConfigDev } from './shared/firebase.config';
-import { RenamePipe } from './competition/rename.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitionComponent,
-    RenamePipe
+    CompetitionFilterPipe
   ],
   imports: [
     BrowserModule,
