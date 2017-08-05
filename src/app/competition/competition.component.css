@@ -12,3 +12,22 @@
   color :white;
   padding-top: 20px;
 }
+
+@media screen and (max-width: 600px) {
+ 
+.box{
+    width: auto;
+    height: 190px;
+    cursor: pointer;
+    background: rgba(60, 60, 60, 0.4);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bigger{
+  font-size: 14px;
+  color :white;
+  padding-top: 5px;
+}
+
+}

@@ -1,7 +1,7 @@
 <br>  
 <div class="row">
-    <div class="col l6 m6 s12" [hidden]="player"><button class="waves-effect waves-light btn" (click)="playerActive()">Players List</button></div>
-    <div class="col l6 m6 s12" [hidden]="fixture"><button class="waves-effect waves-light btn" (click)="fixtureActive()">Recent Fixtures</button></div>
+    <div class="col l6 m6 s12" [hidden]="player"><button class="waves-effect waves-light btn" (click)="playerActive()"><span class="buttonText">Players List</span></button></div>
+    <div class="col l6 m6 s12" [hidden]="fixture"><button class="waves-effect waves-light btn" (click)="fixtureActive()"><span class="buttonText">Recent Fixtures</span></button></div>
   </div>
 <hr class = "myHr"/>
 
@@ -23,7 +23,7 @@
 </div>
 
 
-<div *ngIf="!players?.length && isFixtureActive">console.log(this.schedule);
+<div *ngIf="!players?.length && isFixtureActive">
   <p class="bigger">No Player Data found For the Selected Team</p>
 </div>
 
