@@ -20,7 +20,6 @@ constructor(private competitionService:CompetitionService,private router:Router)
         this.competitionService.getCompetitions().subscribe(competition => {
             let value = competition;
             this.competitions = value.map(element => {
-                console.log(element.caption);
             if((element.caption) === "Primeira Liga 2017/18"){
                 element.caption = "Portuguese Liga 2017-18";
                 return element;     
