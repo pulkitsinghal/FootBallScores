@@ -1,3 +1,4 @@
+import { TeamFilterPipe } from './team-filter.pipe';
 
 
 import { NgModule } from '@angular/core';
@@ -10,7 +11,7 @@ import {teamRouting} from "./team.routing";
 
 @NgModule({
   declarations: [
-    TeamComponent,CountDown
+    TeamComponent,CountDown,TeamFilterPipe
   ],
   imports:[CommonModule,teamRouting],
   providers:[TeamResolve]

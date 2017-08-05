@@ -5,8 +5,14 @@
   </div>
 <hr class = "myHr"/>
 
+<div class="row" [hidden] = "isPlayerActive">
+    <div class="col l3 offset-l9">
+        <input type="search" placeholder="Search" #input>
+    </div>
+</div>
+
 <div class="row" [hidden]="isPlayerActive">
-  <div *ngFor="let player of players"#data>
+  <div *ngFor="let player of players | playerfilter : input.value " #data>
     <div class="col l4 m6 s12">
       <div class ="box">       
         <p class="bigger"><img class="avatar" [hidden] = "!teamCrest" src="{{teamCrest}}">&nbsp;{{player.name}} </p>
