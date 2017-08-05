@@ -42,7 +42,7 @@ table th {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   table {
     border: 0;
   }
@@ -98,8 +98,15 @@ table th {
       color: white;
     }
 
+  table{
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: justify;
+    line-height: 0px;
+    }
 
 }
+
 
 
 
