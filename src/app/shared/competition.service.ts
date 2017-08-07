@@ -13,13 +13,6 @@ export class CompetitionService{
   totalMatchDay:string;
   teamCrest:string;
 
-  private _pageCount = new BehaviorSubject<number>(0);
-  count$ = this._pageCount.asObservable();
-
-  changeCount(number) {
-    this._pageCount.next(number);
-  }
-
   constructor(private http:Http, private af: AngularFireDatabase){
 
   }

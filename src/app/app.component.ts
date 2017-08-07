@@ -7,6 +7,12 @@ import { Router,
   NavigationError
 } from '@angular/router';
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { PAGE_COUNT } from './competition/state-management/competition.actions';
+import * as fromRoot from './competition/state-management/competition.reducer';
+
+
 
 declare var $ : any;
 
@@ -22,13 +28,15 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('modal2') modal2:ElementRef;
   loading:boolean = true;
 
-  constructor(private router : Router, private service: CompetitionService){
+  constructor(private router : Router, private service: CompetitionService, private store: Store<fromRoot.AppState>){
 
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event);
     });
 
-    this.service.incrementPageCount().then(data => this.service.changeCount(data));
+
+    this.store.dispatch({ type: PAGE_COUNT });
+    //this.service.incrementPageCount().then(data => this.service.changeCount(data));
 
   }
 

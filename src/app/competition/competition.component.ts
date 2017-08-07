@@ -45,7 +45,9 @@ constructor(private competitionService:CompetitionService,private router:Router,
             }
         });
         });
-        this.subscription = this.competitionService.count$.subscribe(item => this.pageCount = item);
+
+        this.store.select('pageCount').subscribe(item => this.pageCount = item);
+        //this.subscription = this.competitionService.count$.subscribe(item => this.pageCount = item);
     }
 
     onSubmit(competition:any){
@@ -55,7 +57,7 @@ constructor(private competitionService:CompetitionService,private router:Router,
 
     ngOnDestroy() {
     // prevent memory leak when component is destroyed
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
 
