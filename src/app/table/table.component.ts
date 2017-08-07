@@ -1,6 +1,11 @@
+import { GET_TABLE } from './table-state-management/table.action';
+import { Store } from '@ngrx/store';
+import { AppState } from './../competition/state-management/competition.reducer';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CompetitionService } from './../shared/competition.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+
+import * as fromRoot from './table-state-management/table.reducer';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +14,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private competitionService: CompetitionService, private route: ActivatedRoute, private router: Router) {
+  constructor(private competitionService: CompetitionService, private route: ActivatedRoute, 
+              private router: Router,private store : Store<fromRoot.AppState>) {
 
   }
   competitionId: string;
@@ -25,18 +31,18 @@ export class TableComponent implements OnInit {
   }
 
   getTeams() {
-    this.competitionService.getTeams(this.competitionId).subscribe(teams => {
-      if (teams.standing) {
-        this.visibleLeague = true;
-        this.visibleTournament = false;
-        return this.competitionTeams = teams.standing;
-      } else {
-        this.visibleLeague = false;
-        this.visibleTournament = true;
-        return this.competitionTeams = teams.standings;
-      }
-    });
-
+       this.store.dispatch({ type: GET_TABLE ,payload : this.competitionId});
+       this.store.select(state => state.table.table).subscribe(teams => {
+        if (teams.standing) {
+          this.visibleLeague = true;
+          this.visibleTournament = false;
+          return this.competitionTeams = teams.standing;
+        } else {
+          this.visibleLeague = false;
+          this.visibleTournament = true;
+          return this.competitionTeams = teams.standings;
+        }
+      });
   }
 
   onSubmit(team: any) {
