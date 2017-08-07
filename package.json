@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/effects": "^4.0.2",
     "@ngrx/store": "^4.0.2",
     "angular2-simple-countdown": "git+https://github.com/rahulrsingh09/angular2-simple-countdown.git",
     "angularfire2": "^4.0.0-rc.1",

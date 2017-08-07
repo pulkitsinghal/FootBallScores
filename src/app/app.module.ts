@@ -1,19 +1,23 @@
-import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
+import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
-import { CompetitionService } from './shared/competition.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
-
+import { StoreModule } from '@ngrx/store';
 import { Routing } from './app.routing';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule} from "angularfire2/database/database.module";
+
+
+import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
+import { CompetitionService } from './shared/competition.service';
 import { AppComponent } from './app.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { TableComponent } from './table/table.component';
-
-import { AngularFireModule } from 'angularfire2';
-import {AngularFireDatabaseModule} from "angularfire2/database/database.module";
 import { firebaseConfig, firebaseConfigDev } from './shared/firebase.config';
+import * as fromRoot from "./competition/state-management/competition.reducer";
+import { CompetitionEffects } from './competition/state-management/competition.effects';
+
 
 
 @NgModule({
@@ -28,7 +32,9 @@ import { firebaseConfig, firebaseConfigDev } from './shared/firebase.config';
     RouterModule,
     Routing,
     AngularFireModule.initializeApp(firebaseConfigDev),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    StoreModule.forRoot(fromRoot.reducers),
+    EffectsModule.forRoot([MainEffects])
   ],
   providers: [CompetitionService],
   bootstrap: [AppComponent]
