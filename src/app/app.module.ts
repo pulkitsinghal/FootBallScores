@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { Routing } from './app.routing';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule} from "angularfire2/database/database.module";
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
 import { CompetitionService } from './shared/competition.service';
@@ -34,7 +34,10 @@ import { CompetitionEffects } from './competition/state-management/competition.e
     AngularFireModule.initializeApp(firebaseConfigDev),
     AngularFireDatabaseModule,
     StoreModule.forRoot(fromRoot.reducers),
-    EffectsModule.forRoot([MainEffects])
+    EffectsModule.forRoot([CompetitionEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    })
   ],
   providers: [CompetitionService],
   bootstrap: [AppComponent]
