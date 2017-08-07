@@ -16,7 +16,7 @@ export class CompetitionEffects {
       .ofType(GET_COMP)
       .switchMap(action => this.service$.getCompetitions()
         // If successful, dispatch success action with result
-        .map(res => ({ type: SUCCESS, payload: res}))
+        .map(res => ({ type: SUCCESS, payload: res})) 
         // If request fails, dispatch failed action
         .catch((err) => Observable.of({ type: 'FAILED' ,payload :err}))  
       );
@@ -24,7 +24,9 @@ export class CompetitionEffects {
   @Effect() pageCount$:Observable<Action> = this.action$
       // Listen for the 'LOGIN' action
       .ofType(PAGE_COUNT)
-      .switchMap(() => Observable.fromPromise(this.service$.incrementPageCount()))
-      .map(res => ({type : PAGE_COUNT_SUCCESS,payload :res}));
+      .switchMap(() => Observable.fromPromise(this.service$.incrementPageCount())
+      .map(res => ({type : PAGE_COUNT_SUCCESS, payload :res}))
+      .catch((err) => Observable.of({ type: 'FAIL' ,payload :err}))
+      );
 
 }

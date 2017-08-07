@@ -55,10 +55,6 @@ constructor(private competitionService:CompetitionService,private router:Router,
         this.router.navigate(['table', {id: competition.id}]);
     }
 
-    ngOnDestroy() {
-    // prevent memory leak when component is destroyed
-    //this.subscription.unsubscribe();
-  }
 
 
 }
