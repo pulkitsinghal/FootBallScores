@@ -43,6 +43,7 @@ export class TableComponent implements OnInit {
           return this.competitionTeams = teams.standings;
         }
       });
+      //this.store.subscribe((state) => { console.log("called");localStorage.setItem('state',JSON.stringify(state))});  set localstorage
   }
 
   onSubmit(team: any) {
