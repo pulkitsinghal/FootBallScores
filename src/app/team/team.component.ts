@@ -36,7 +36,12 @@ export class TeamComponent implements OnInit{
   ngOnInit(){
     this.teamId = this.route.snapshot.params['id'];
     //this.teamCrest = this.competitionService.teamCrest;
-    this.store.select(state => state.table.teamCrest).subscribe(data => this.teamCrest = data);
+    this.store.select(state => state).subscribe(data => {      
+      if(data.table){
+        localStorage.setItem('state',JSON.stringify(data));  
+      }
+      this.teamCrest = JSON.parse(localStorage.getItem('state')).table.teamCrest;
+    });
     this.players = this.route.snapshot.data['team'];
 
   }

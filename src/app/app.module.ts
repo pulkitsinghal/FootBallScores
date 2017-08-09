@@ -8,6 +8,7 @@ import { Routing } from './app.routing';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule} from "angularfire2/database/database.module";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
 import { CompetitionService } from './shared/competition.service';
@@ -37,6 +38,10 @@ import { CompetitionEffects } from './competition/state-management/competition.e
     EffectsModule.forRoot([CompetitionEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
+    }),
+    LocalStorageModule.withConfig({
+            prefix: 'footballStorage',
+            storageType: 'localStorage'
     })
   ],
   providers: [CompetitionService],
