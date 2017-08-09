@@ -18,10 +18,10 @@ import * as fromRoot from './table-state-management/table.reducer';
   ],
   imports:[CommonModule,
           tableRouting,
-           StoreModule.forFeature('table',fromRoot.table_reducers ),
+          StoreModule.forFeature('table',fromRoot.table_reducers ),
           EffectsModule.forFeature([TableEffects])
         ],
-  providers:[TableResolve]
+  providers:[]
 })
 
 export class TableModule{

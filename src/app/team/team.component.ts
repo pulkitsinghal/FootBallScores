@@ -1,10 +1,11 @@
+import { GET_FIXTURES } from './team-state-management/team.action';
 import { Store } from '@ngrx/store';
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
 
 import {CompetitionService} from "../shared/competition.service";
 import * as fromRoot from '../table/table-state-management/table.reducer';
-
+import * as myRoot from './team-state-management/team.reducer';
 
 @Component({
   selector:'team',
@@ -30,7 +31,7 @@ export class TeamComponent implements OnInit{
 
 
   constructor(private competitionService:CompetitionService,private route:ActivatedRoute,
-              private store : Store<fromRoot.AppState>){}
+              private store : Store<fromRoot.AppState>, private myStore : Store<myRoot.State>){}
 
 
   ngOnInit(){
@@ -42,27 +43,27 @@ export class TeamComponent implements OnInit{
       }
       this.teamCrest = JSON.parse(localStorage.getItem('state')).table.teamCrest;
     });
+    this.myStore.dispatch({ type: GET_FIXTURES ,payload : this.teamId});
     this.players = this.route.snapshot.data['team'];
 
-  }
-
-  getPlayers(){
-    this.competitionService.getPlayers(this.teamId).subscribe(player => this.players = player.players);
   }
 
   getClosestFixtures(){
     this.totalMatchDay = +this.competitionService.totalMatchDay;
     this.currentMatchDay = +this.competitionService.currentMatchDay;
-    this.competitionService.getFixtures(this.teamId).subscribe(matches => this.schedule = matches.fixtures);
-    
+    //this.competitionService.getFixtures(this.teamId).subscribe(matches => this.schedule = matches.fixtures);
+    this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
+        this.schedule = data;
+        console.log(this.schedule);
+    });  
   }
 
   fixtureActive(){
+    this.getClosestFixtures();
     this.isFixtureActive = false;
     this.isPlayerActive = true;
     this.fixture = true;
-    this.player = false;
-    this.getClosestFixtures();
+    this.player = false;  
   }
 
   playerActive(){

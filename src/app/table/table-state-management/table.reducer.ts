@@ -2,10 +2,11 @@ import { SUCCESS_TABLE, STORE_TEAMCREST } from './table.action';
 import { ActionReducerMap } from '@ngrx/store';
 
 import {TableActions} from '../table-state-management/table.action';
+import { FixtureReducer } from './../../team/team-state-management/team.reducer';
 
 export interface AppState{
     table:any;
-    teamCrest:string
+    teamCrest:string;
 }
 
 
@@ -32,5 +33,5 @@ export function teamCrestReducer(state = "",action: TableActions):string {
 
 export const table_reducers: ActionReducerMap<AppState> = {
      table: TableReducer,
-     teamCrest : teamCrestReducer   
+     teamCrest : teamCrestReducer  
 };

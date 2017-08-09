@@ -5,7 +5,7 @@ import { TableResolve } from "./table.resolve";
 
 
 const routes: Routes = [
-  { path: '', component: TableComponent,resolve: {table: TableResolve} }
+  { path: '', component: TableComponent}
 ];
 
 export const tableRouting = RouterModule.forChild(routes);
