@@ -1,4 +1,4 @@
-import { GET_TABLE } from './table-state-management/table.action';
+import { GET_TABLE, STORE_TEAMCREST } from './table-state-management/table.action';
 import { Store } from '@ngrx/store';
 import { AppState } from './../competition/state-management/competition.reducer';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
 
   onSubmit(team: any) {
     this.teamId = team._links.team.href.split('/').pop(-1);
-    this.competitionService.storeTeamCrest(team.crestURI);
+    this.store.dispatch({type : STORE_TEAMCREST , payload : team.crestURI});
     this.router.navigate(['team', { id: this.teamId }]);
   }
 

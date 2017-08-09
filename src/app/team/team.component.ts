@@ -1,6 +1,9 @@
+import { Store } from '@ngrx/store';
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
+
 import {CompetitionService} from "../shared/competition.service";
+import * as fromRoot from '../table/table-state-management/table.reducer';
 
 
 @Component({
@@ -26,12 +29,14 @@ export class TeamComponent implements OnInit{
   text: any = { "Weeks": "Weeks", "Days": "Days", "Hours": "Hours", Minutes: "Minutes", "Seconds": "Seconds", "MilliSeconds":"MilliSeconds" };
 
 
-  constructor(private competitionService:CompetitionService,private route:ActivatedRoute){}
+  constructor(private competitionService:CompetitionService,private route:ActivatedRoute,
+              private store : Store<fromRoot.AppState>){}
 
 
   ngOnInit(){
     this.teamId = this.route.snapshot.params['id'];
-    this.teamCrest = this.competitionService.teamCrest;
+    //this.teamCrest = this.competitionService.teamCrest;
+    this.store.select(state => state.table.teamCrest).subscribe(data => this.teamCrest = data);
     this.players = this.route.snapshot.data['team'];
 
   }
@@ -62,8 +67,4 @@ export class TeamComponent implements OnInit{
     this.player = true;
 
   }
-
-
-
-
 }
