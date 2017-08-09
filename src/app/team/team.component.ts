@@ -54,7 +54,6 @@ export class TeamComponent implements OnInit{
     //this.competitionService.getFixtures(this.teamId).subscribe(matches => this.schedule = matches.fixtures);
     this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
         this.schedule = data;
-        console.log(this.schedule);
     });  
   }
 
