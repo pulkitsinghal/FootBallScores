@@ -19,6 +19,8 @@ export class TeamComponent implements OnInit{
   teamId:string;
   players:any[];
   schedule:any[];
+  previous:any[];
+  prevFix:boolean = true;
   isFixtureActive:boolean=true;
   isPlayerActive:boolean=false;
   fixture:boolean = false;
@@ -50,10 +52,16 @@ export class TeamComponent implements OnInit{
   }
 
   getClosestFixtures(){
-    this.store.select(state => state['matchDay']).subscribe(data => this.currentMatchDay = data);
+    this.store.select(state => state['matchDay']).subscribe(data => {
+                if(data){
+                  localStorage.setItem('CMD',data);
+                }
+    this.currentMatchDay = +localStorage.getItem('CMD');
+      });
     this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
         let value = data;
         this.schedule = value.filter((data) => data.matchday >= this.currentMatchDay);
+        this.previous = value.filter((data) => data.matchday < this.currentMatchDay);
     }); 
   }
 
@@ -63,6 +71,7 @@ export class TeamComponent implements OnInit{
     this.isPlayerActive = true;
     this.fixture = true;
     this.player = false;  
+    this.prevFix = true;
   }
 
   playerActive(){
@@ -70,6 +79,17 @@ export class TeamComponent implements OnInit{
     this.isFixtureActive = true;
     this.fixture = false;
     this.player = true;
-
+    this.prevFix = true;
   }
+
+  previousFixture(){
+    this.getClosestFixtures();
+    this.prevFix = false;
+    this.isPlayerActive = true;
+    this.fixture = true;
+    this.player = false;    
+  }
+
+
+
 }

@@ -44,6 +44,24 @@
   padding-right: 20px;
 }
 
+.resultBox{
+  width: auto;
+  height: 50px;
+  background: rgba(60, 60, 60, 0.6);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.resultBox > p {
+  padding-top: 10px;
+  text-align: center;
+}
+
+
+.btn{
+  width:250px;
+}
+
 @media screen and (max-width: 600px) {
 
   .fixtureBox{
@@ -53,6 +71,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+
+  .resultBox{
+    height: 80px;
+  }
+  
 
 
   .box{
