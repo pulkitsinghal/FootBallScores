@@ -1,3 +1,4 @@
+import { matchDay } from './../competition/state-management/competition.actions';
 import { GET_FIXTURES } from './team-state-management/team.action';
 import { Store } from '@ngrx/store';
 import { Component,OnInit } from '@angular/core';
@@ -49,12 +50,11 @@ export class TeamComponent implements OnInit{
   }
 
   getClosestFixtures(){
-    this.totalMatchDay = +this.competitionService.totalMatchDay;
-    this.currentMatchDay = +this.competitionService.currentMatchDay;
-    //this.competitionService.getFixtures(this.teamId).subscribe(matches => this.schedule = matches.fixtures);
+    this.store.select(state => state['matchDay']).subscribe(data => this.currentMatchDay = data);
     this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
-        this.schedule = data;
-    });  
+        let value = data;
+        this.schedule = value.filter((data) => data.matchday >= this.currentMatchDay);
+    }); 
   }
 
   fixtureActive(){

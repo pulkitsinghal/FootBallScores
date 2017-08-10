@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 
-import { GET_COMP } from './state-management/competition.actions';
+import { GET_COMP, MATCH_DAY } from './state-management/competition.actions';
 import * as fromRoot from './state-management/competition.reducer';
 
 
@@ -51,7 +51,7 @@ constructor(private competitionService:CompetitionService,private router:Router,
     }
 
     onSubmit(competition:any){
-        this.competitionService.storeMatchDay(competition.currentMatchday,competition.numberOfMatchdays);
+        this.store.dispatch({ type: MATCH_DAY , payload : competition.currentMatchday});
         this.router.navigate(['table', {id: competition.id}]);
     }
 

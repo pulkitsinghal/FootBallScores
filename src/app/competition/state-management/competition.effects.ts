@@ -4,7 +4,7 @@ import { Injectable} from "@angular/core";
 import { Observable} from "rxjs";
 
 import { CompetitionService } from '../../shared/competition.service';
-import { GET_COMP, SUCCESS, PAGE_COUNT_SUCCESS, PAGE_COUNT } from './competition.actions';
+import { GET_COMP, SUCCESS, PAGE_COUNT_SUCCESS, PAGE_COUNT, SuccessAction, PageCountSuccess } from './competition.actions';
 
 @Injectable()
 export class CompetitionEffects {
@@ -16,7 +16,8 @@ export class CompetitionEffects {
       .ofType(GET_COMP)
       .switchMap(action => this.service$.getCompetitions()
         // If successful, dispatch success action with result
-        .map(res => ({ type: SUCCESS, payload: res})) 
+        //.map(res => ({ type: SUCCESS, payload: res})) 
+        .map(res => new SuccessAction(res))
         // If request fails, dispatch failed action
         .catch((err) => Observable.of({ type: 'FAILED' ,payload :err}))  
       );
@@ -25,7 +26,8 @@ export class CompetitionEffects {
       // Listen for the 'LOGIN' action
       .ofType(PAGE_COUNT)
       .switchMap(() => Observable.fromPromise(this.service$.incrementPageCount())
-      .map(res => ({type : PAGE_COUNT_SUCCESS, payload :res}))
+      //.map(res => ({type : PAGE_COUNT_SUCCESS, payload :res}))
+      .map(res => new PageCountSuccess(res))
       .catch((err) => Observable.of({ type: 'FAIL' ,payload :err}))
       );
 

@@ -36,7 +36,7 @@
 
 <div class="row" [hidden]="isFixtureActive">
   <div *ngFor="let fixture of schedule; let i = index;">
-    <div class="col l12 m12 s12" *ngIf="i+currentMatchDay < currentMatchDay+5">
+    <div class="col l12 m12 s12" *ngIf="(i < 5)">
       <div class = "fixtureBox">
       <p class="bigger">{{fixture.homeTeamName}} VS {{fixture.awayTeamName}}</p>
         <p><count-down [text]="text" units="Days | Hours | Minutes | Seconds " end="{{fixture.date}}"></count-down>days to go !</p>

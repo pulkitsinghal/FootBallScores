@@ -4,6 +4,7 @@ export const GET_COMP = 'GET_COMP';
 export const SUCCESS = 'SUCCESS';
 export const PAGE_COUNT = 'PAGE_COUNT';
 export const PAGE_COUNT_SUCCESS = 'PAGE_COUNT_SUCCESS';
+export const MATCH_DAY = 'MATCH_DAY';
 
 
 export class GetAction implements Action {
@@ -31,6 +32,15 @@ export class PageCountSuccess implements Action {
 }
 
 
+export class matchDay implements Action {
+  readonly type = MATCH_DAY;
+
+  constructor(public payload: any) {}
+}
+
+
+
+
 
 
 export type Actions =
@@ -38,4 +48,5 @@ export type Actions =
   | SuccessAction
   | GetPageCount
   | PageCountSuccess
+  | matchDay
 ;

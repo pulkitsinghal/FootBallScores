@@ -11,7 +11,6 @@ export class CompetitionService{
 
   currentMatchDay:string;
   totalMatchDay:string;
-  teamCrest:string;
 
   constructor(private http:Http, private af: AngularFireDatabase){
 
@@ -41,14 +40,6 @@ export class CompetitionService{
     return this.http.get('https://api.football-data.org/v1/teams/'+id+'/fixtures',{headers:headers}).map(response => response.json())
   }
 
-  storeMatchDay(currentMatchDay:string,totalMatchDays:string){
-    this.currentMatchDay = currentMatchDay;
-    this.totalMatchDay = totalMatchDays;
-  }
-
-  storeTeamCrest(link:string){
-    this.teamCrest = link;
-  }
 
   incrementPageCount(){
     const pageCount = this.af.object('/pageCountFA/').$ref

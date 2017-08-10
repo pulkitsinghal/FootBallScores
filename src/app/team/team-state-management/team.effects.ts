@@ -4,7 +4,7 @@ import { Injectable} from "@angular/core";
 import { Observable} from "rxjs";
 
 import { CompetitionService } from '../../shared/competition.service';
-import { GET_FIXTURES, SUCCESS_FIXTURES } from './team.action';
+import { GET_FIXTURES, SUCCESS_FIXTURES, SuccessFixtures } from './team.action';
 
 
 @Injectable()
@@ -18,7 +18,8 @@ export class TeamEffects {
       .map(toPayload)
       .switchMap(payload => this.service$.getFixtures(payload)
         // If successful, dispatch success action with result
-        .map(res => ({ type: SUCCESS_FIXTURES, payload: res})) 
+        //.map(res => ({ type: SUCCESS_FIXTURES, payload: res})) 
+        .map(res => new SuccessFixtures(res))
         // If request fails, dispatch failed action
         .catch((err) => Observable.of({ type: 'FAILED' ,payload :err}))  
       );
