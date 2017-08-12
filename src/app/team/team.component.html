@@ -58,7 +58,7 @@
   <div *ngFor="let prev of previous; let i = index;">
     <div class="col l12 m12 s12">
       <div class = "resultBox">
-      <p> {{prev.date | date}}&nbsp;&nbsp;&nbsp;&nbsp;{{prev.homeTeamName}}&nbsp;&nbsp;&nbsp;[{{prev.result.goalsHomeTeam}}] &nbsp;&nbsp;- &nbsp;&nbsp; [{{prev.result.goalsAwayTeam}}]&nbsp;&nbsp; {{prev.awayTeamName}} </p>
+      <p> {{prev.date | date:'short'}}<br>{{prev.homeTeamName}}&nbsp;&nbsp;&nbsp;[{{prev.result.goalsHomeTeam}}] &nbsp;&nbsp;- &nbsp;&nbsp; [{{prev.result.goalsAwayTeam}}]&nbsp;&nbsp; {{prev.awayTeamName}} </p>
       </div>
     </div>
   </div>
