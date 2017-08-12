@@ -40,7 +40,7 @@ export class CompetitionService{
   allFixturesOnMatchDay(currentMatchDay: number,cId: string){
     let headers = new Headers();
     headers.append('X-Auth-Token', '7c94f28bddf34648bd9a6f5c2e2da0f0');
-    return this.http.get('http://api.football-data.org/v1/competitions/'+cId+'/fixtures?matchday='+currentMatchDay,{headers:headers}).map(response => response.json()) 
+    return this.http.get('https://api.football-data.org/v1/competitions/'+cId+'/fixtures?matchday='+currentMatchDay,{headers:headers}).map(response => response.json()) 
   }
 
   incrementPageCount(){
