@@ -4,7 +4,7 @@ import { Injectable} from "@angular/core";
 import { Observable} from "rxjs";
 
 import { CompetitionService } from '../../shared/competition.service';
-import { GET_TABLE, SUCCESS_TABLE, SuccessTable } from './table.action';
+import { GET_TABLE, SUCCESS_TABLE, SuccessTable, successMatchDay, GET_MATCHDAY } from './table.action';
 
 @Injectable()
 export class TableEffects {
@@ -23,5 +23,17 @@ export class TableEffects {
         .catch((err) => Observable.of({ type: 'FAILED' ,payload :err}))  
       );
 
- 
+   @Effect() match$:Observable<Action> = this.action$
+      // Listen for the 'LOGIN' action
+      .ofType(GET_MATCHDAY)
+      .map(toPayload)
+      .switchMap(payload => this.service$.allFixturesOnMatchDay(payload[0],payload[1])
+        // If successful, dispatch success action with result
+        //.map(res => ({ type: SUCCESS_TABLE, payload: res})) 
+        .map(res => new successMatchDay(res))
+        // If request fails, dispatch failed action
+        .catch((err) => Observable.of({ type: 'FAILED' ,payload :err}))  
+      );
+
+
 }

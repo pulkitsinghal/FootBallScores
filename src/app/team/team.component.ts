@@ -52,12 +52,7 @@ export class TeamComponent implements OnInit{
   }
 
   getClosestFixtures(){
-    this.store.select(state => state['matchDay']).subscribe(data => {
-                if(data){
-                  localStorage.setItem('CMD',data);
-                }
     this.currentMatchDay = +localStorage.getItem('CMD');
-      });
     this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
         let value = data;
         this.schedule = value.filter((data) => data.matchday >= this.currentMatchDay);

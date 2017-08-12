@@ -1,11 +1,14 @@
-import { GET_TABLE, STORE_TEAMCREST } from './table-state-management/table.action';
+import { matchDay } from './../competition/state-management/competition.actions';
+import { GET_TABLE, STORE_TEAMCREST, GET_MATCHDAY } from './table-state-management/table.action';
 import { Store } from '@ngrx/store';
 import { AppState } from './../competition/state-management/competition.reducer';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CompetitionService } from './../shared/competition.service';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 
 import * as fromRoot from './table-state-management/table.reducer';
+
+declare var $ : any;
 
 @Component({
   selector: 'app-table',
@@ -24,10 +27,19 @@ export class TableComponent implements OnInit {
   //groupComptetitionTeams:any;
   visibleLeague: boolean;
   visibleTournament: boolean;
+  allFixturesArray:any[];
+  @ViewChild('modal') modal:ElementRef;
+   currentMatchDay:number;
 
   ngOnInit() {
     this.competitionId = this.route.snapshot.params['id'];
     this.getTeams();
+    this.store.select(state => state['matchDay']).subscribe(data => {
+                if(data){
+                  localStorage.setItem('CMD',data);
+                }
+    this.currentMatchDay = +localStorage.getItem('CMD');
+    });
   }
 
   getTeams() {
@@ -52,9 +64,17 @@ export class TableComponent implements OnInit {
     this.router.navigate(['team', { id: this.teamId }]);
   }
 
+  allFixtures(){
+    this.store.dispatch({ type: GET_MATCHDAY ,payload : [this.currentMatchDay,this.competitionId]});
+    this.store.select(state => state.table.matchDayArray).subscribe(data => this.allFixturesArray = data.fixtures);
+  }
+
   submit(text:string){
     this.competitionTeams = this.competitionTeams.filter(value => value.teamName.toLowerCase().includes(text.toLowerCase()));
   }
 
+  ngAfterViewInit() {
+      $(this.modal.nativeElement).modal();    
+  }
 
 }
