@@ -24,7 +24,7 @@ declare var $ : any;
 
 export class AppComponent implements AfterViewInit {
   @ViewChild('button') el:ElementRef;
-  @ViewChild('modal') modal:ElementRef;
+  @ViewChild('modal1') modal1:ElementRef;
   @ViewChild('modal2') modal2:ElementRef;
   loading:boolean = true;
 
@@ -61,7 +61,7 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
       $(this.el.nativeElement).sideNav();
-      $(this.modal.nativeElement).modal();
+      $(this.modal1.nativeElement).modal();
       $(this.modal2.nativeElement).modal();
       
   }

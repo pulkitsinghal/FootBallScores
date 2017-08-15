@@ -76,3 +76,12 @@
 .modal-content p{
   color:black;
 }
+
+.page-footer{
+  background-color: transparent;
+}
+
+.icon{
+  background-color: white;
+  border-radius: 20px;
+}
