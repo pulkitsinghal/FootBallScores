@@ -55,8 +55,8 @@ export class TeamComponent implements OnInit{
     this.currentMatchDay = +localStorage.getItem('CMD');
     this.myStore.select(state => state['team'].fixtures.fixtures).subscribe((data) => {
         let value = data;
-        this.schedule = value.filter((data) => data.matchday >= this.currentMatchDay && data.status !== 'FINISHED');
-        this.previous = value.filter((data) => data.status === 'FINISHED');
+        this.schedule = value.filter((data) => data.matchday >= this.currentMatchDay && data.status !== 'FINISHED' && data.status !== 'IN_PLAY');
+        this.previous = value.filter((data) => data.status === 'FINISHED'|| data.status === 'IN_PLAY');
     }); 
   }
 

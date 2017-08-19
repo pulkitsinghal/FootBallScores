@@ -34,7 +34,7 @@ export class CompetitionService{
   getFixtures(id:string){
     let headers = new Headers();
     headers.append('X-Auth-Token', '7c94f28bddf34648bd9a6f5c2e2da0f0');
-    return this.http.get('https://api.football-data.org/v1/teams/'+id+'/fixtures',{headers:headers}).map(response => response.json())
+    return this.http.get('https://api.football-data.org/v1/teams/'+id+'/fixtures?timeFrameStart=2017-08-01&timeFrameEnd=2018-08-01',{headers:headers}).map(response => response.json())
   }
 
   allFixturesOnMatchDay(currentMatchDay: number,cId: string){
