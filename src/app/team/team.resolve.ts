@@ -10,6 +10,6 @@ export class TeamResolve implements Resolve<any> {
   constructor(private competitionService:CompetitionService) {}
 
   resolve(route: ActivatedRouteSnapshot):Observable<any> {
-      return this.competitionService.getPlayers(route.params['id']).map(players => players.players);
+      return this.competitionService.getPlayers(route.params['id']).map(players => players['players']);
   }
 }

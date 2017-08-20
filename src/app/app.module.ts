@@ -1,3 +1,4 @@
+import { InterceptorService } from './shared/interceptor.service';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule} from "angularfire2/database/database.module";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { HttpClientModule } from "@angular/common/http";
 
 import { CompetitionFilterPipe } from './competition/competition-filter.pipe';
 import { CompetitionService } from './shared/competition.service';
@@ -18,6 +20,7 @@ import { TableComponent } from './table/table.component';
 import { firebaseConfig, firebaseConfigDev } from './shared/firebase.config';
 import * as fromRoot from "./competition/state-management/competition.reducer";
 import { CompetitionEffects } from './competition/state-management/competition.effects';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 
 
@@ -30,6 +33,7 @@ import { CompetitionEffects } from './competition/state-management/competition.e
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     RouterModule,
     Routing,
     AngularFireModule.initializeApp(firebaseConfigDev),
@@ -44,7 +48,12 @@ import { CompetitionEffects } from './competition/state-management/competition.e
             storageType: 'localStorage'
     })
   ],
-  providers: [CompetitionService],
+  providers: [CompetitionService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
