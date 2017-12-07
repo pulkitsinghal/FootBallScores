@@ -79,3 +79,35 @@ For any Suggestions and Comments Please post here - https://rahulrsingh09.github
       * for example, visual studio can be opened with: `code ~/Dropbox/remote-dev/$PROJECT_SYNC_DIR_NAME`
 1. On your local machine use `selective sync` via the dropbox UI to prevent the transfer of bulky dependencies back to your local filesystem. Go ahead and exclude `node_modules` and `bower_components` etc from being synced back to your machine. This is all done via UI so it should be very easy.
     * `dropbox > preferences > account > selective sync > change settings...`
+
+## Deploy
+
+1. Add `firebase.config.ts` in `src/app/shared` folder. The content doesn't have to be exact but it will look something like:
+
+    ```
+    export const firebaseConfig = {
+        apiKey: "<value>",
+        authDomain: "<value>",
+        databaseURL: "<value>",
+        storageBucket: "<value>",
+        messagingSenderId: "<value>"
+        };
+    export const firebaseConfigDev = {
+        apiKey: "<value>",
+        authDomain: "<value>",
+        databaseURL: "<value>",
+        projectId: "<value>",
+        storageBucket: "<value>",
+        messagingSenderId: "<value>"
+    };
+    ```
+1. Run the following commands:
+
+    ```
+    docker-compose run nodejs-builder npm install
+    docker-compose run nodejs-builder npm shrinkwrap
+    docker-compose run nodejs-builder npm run build
+    #docker-compose run nodejs-builder npm run start
+    docker-compose up web
+    ```
+1. Browse to URL: `http://myRemoteMachine:80` or `http://localhost:80` depending on your setup.

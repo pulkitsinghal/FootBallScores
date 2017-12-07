@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  nodejs-builder:
+    image: node:6.11.1
+    working_dir: /apps/football-scores
+    volumes:
+      - .:/apps/football-scores
+    command: tail -f /dev/null
+
+  web:
+    image: node:6.11.1
+    working_dir: /apps/football-scores
+    ports:
+      - 80:4200
+    volumes:
+      - .:/apps/football-scores
+    command: ['npm', 'run', 'start']
